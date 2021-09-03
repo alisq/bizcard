@@ -3,7 +3,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="paper-full.min.js"></script>
     <style>
-
+        * {
+            box-sizing:border-box;
+        }
         @font-face {
             font-family: 'Standard';
             src: url('fonts/standard-font/webfonts/standard-bold-webfont.woff2') format('woff2');
@@ -27,6 +29,8 @@
             font-family:'Standard';
             padding:0.5em;
             transition:background 0.2s;
+            width:300px;
+            text-align:left;
         }
 
         button:hover,
@@ -40,6 +44,7 @@
         }
 
         input {
+            width:300px;
             padding:0.5em;
             font-size:20px;
             font-family:'Standard';
