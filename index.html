@@ -1,0 +1,120 @@
+<html>
+ <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="node_modules/paper/dist/paper-full.min.js"></script>
+    <style>
+
+        @font-face {
+            font-family: 'Standard';
+            src: url('fonts/standard-font/webfonts/standard-bold-webfont.woff2') format('woff2');
+        }
+
+        body {
+            font-family: 'Standard';
+        }
+        #myCanvas {
+            /* transform-origin: 0% 0%; */
+            /* transform: scale(0.75); */
+            
+        }
+    </style>
+ </head>
+<body>
+    <h1>hello</h1>
+    <input type="text" id="name" value="Ali fuckin' Qadeer" /> <label for="name">name</label><br /><br />
+    <input type="text" id="phone" value="647-555-6666" /> <label for="phone">phone</label><br /><br />
+    <input type="text" id="email" value="aqadeer@ocadu.ca" /> <label for="email">email</label><br /><br />
+    <button id="download-to-svg">DOWNLOAD</button><br /><br />
+    <canvas id="myCanvas" width="1200" height="750"></canvas><br /><br />
+   
+
+   <script type="text/javascript">
+	// Only executed our code once the DOM is ready.
+	window.onload = function() {
+		// Get a reference to the canvas object
+		var canvas = document.getElementById('myCanvas');
+		// Create an empty project and a view for the canvas:
+		paper.setup(canvas);
+
+
+        
+        var cropTopLeftVert = new paper.Path.Line(new paper.Point(75, 0), new paper.Point(75, 75/2));
+        var cropTopLeftHoriz = new paper.Path.Line(new paper.Point(0, 75), new paper.Point(75/2, 75));
+
+        var cropTopRightVert = new paper.Path.Line(new paper.Point(1125, 0), new paper.Point(1125, 75/2));
+        var cropTopRightHoriz = new paper.Path.Line(new paper.Point(1125+37.5, 75), new paper.Point(1200, 75));
+
+
+        var cropBottomLeftVert = new paper.Path.Line(new paper.Point(75, 750-37.5), new paper.Point(75, 750));
+        var cropBottomLeftHoriz = new paper.Path.Line(new paper.Point(0, 675), new paper.Point(75/2, 675));
+
+        var cropBottomRightVert = new paper.Path.Line(new paper.Point(1125, 750-37.5), new paper.Point(1125, 750));
+        var cropBottomRightHoriz = new paper.Path.Line(new paper.Point(1125+37.5, 675), new paper.Point(1200, 675));
+
+        cropTopLeftVert.strokeColor = 'black';
+        cropTopLeftHoriz.strokeColor = 'black';
+        cropTopRightVert.strokeColor = 'black';
+        cropTopRightHoriz.strokeColor = 'black';
+        cropBottomLeftVert.strokeColor = 'black';
+        cropBottomLeftHoriz.strokeColor = 'black';
+        cropBottomRightVert.strokeColor = 'black';
+        cropBottomRightHoriz.strokeColor = 'black';
+
+
+        var name = new paper.PointText(new paper.Point(100, 150));
+        name.fontFamily = 'Standard';
+        name.fontSize = 80;
+        name.fillColor = 'black';
+        name.content = $("#name").val();
+
+        var phone = new paper.PointText(new paper.Point(100, 250));
+        phone.fontFamily = 'Standard';
+        phone.fontSize = 80;
+        phone.fillColor = 'black';
+        phone.content = $("#phone").val();
+
+
+        var email = new paper.PointText(new paper.Point(100, 350));
+        email.fontFamily = 'Standard';
+        email.fontSize = 80;
+        email.fillColor = 'black';
+        email.content = $("#email").val();
+
+
+
+
+$("input").on("keyup",function(){
+    name.content = $("#name").val();
+    phone.content = $("#phone").val();
+    email.content = $("#email").val();
+})
+
+
+		// Create a Paper.js Path to draw a line into it:
+		var path = new paper.Path();
+		// Give the stroke a color
+		path.strokeColor = 'black';
+		var start = new paper.Point(100, 100);
+		// Move to start and draw a line from there
+		path.moveTo(start);
+		// Note that the plus operator on Point objects does not work
+		// in JavaScript. Instead, we need to call the add() function:
+		path.lineTo(start.add([ 200, -50 ]));
+		// Draw the view now:
+		paper.view.draw();
+	}
+
+    
+     $("#download-to-svg").on("click",function(){
+      var fileName = "custom.svg"
+      var url = "data:image/svg+xml;utf8," + encodeURIComponent(paper.project.exportSVG({asString:true}));
+      var link = document.createElement("a");
+      link.download = fileName;
+      link.href = url;
+      link.click();
+     });
+    
+ </script>
+
+ </body>
+</html>
