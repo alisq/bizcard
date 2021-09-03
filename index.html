@@ -17,6 +17,27 @@
             /* transform: scale(0.75); */
             
         }
+        
+        button {
+            color:white;
+            background:black;
+            border:1px solid #000;
+            border-radius:5px;
+            font-size:20px;
+            font-family:'Standard';
+            padding:0.5em;
+            transition:background 0.2s;
+        }
+
+        button:hover,
+        button:active {
+            background:white;
+            color:black;
+        }
+
+        button:active {
+            border-color:white;
+        }
 
         input {
             padding:0.5em;
@@ -30,7 +51,7 @@
     <input type="text" id="name" value="Ali fuckin' Qadeer" /> <label for="name">name</label><br /><br />
     <input type="text" id="phone" value="647-555-6666" /> <label for="phone">phone</label><br /><br />
     <input type="text" id="email" value="aqadeer@ocadu.ca" /> <label for="email">email</label><br /><br />
-    <button id="download-to-svg">DOWNLOAD</button><br /><br />
+    <button id="download-to-svg">download</button><br /><br />
     <canvas id="myCanvas" width="1200" height="750"></canvas><br /><br />
    
 
